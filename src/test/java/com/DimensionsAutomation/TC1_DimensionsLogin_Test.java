@@ -2,7 +2,6 @@ package com.DimensionsAutomation;
 
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -12,7 +11,7 @@ public class TC1_DimensionsLogin_Test {
     @BeforeClass
     public void startWebDriver(){
         System.out.println("starting web driver");
-        String serverTest = "Mozilla";
+        String serverTest = "Chrome";
         baseDriver = StartDriverServer.startDriver(serverTest);
 //        LoadTestData inputData = new LoadTestData("MyText.csv");
 //        inputData.LoadCSV();
@@ -25,7 +24,6 @@ public class TC1_DimensionsLogin_Test {
         loginPage.loginApp("http://courses.learnobytes.com/", "admin", "password");
         Assert.assertEquals("Dimension", loginPage.getWindowTitle());
         cprSrcShots.captureSrcShot("Home_Page");
-        WelcomePageObjects homePage = new WelcomePageObjects();
         WelcomeChecks welChecks = new WelcomeChecks(baseDriver);
         welChecks.welcomePageChecks();
     }

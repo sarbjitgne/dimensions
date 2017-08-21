@@ -10,7 +10,7 @@ public class WelcomeChecks {
     }
 
     public void welcomePageChecks() {
-        WelcomePageObjects welObj = new WelcomePageObjects();
+        LeftNavigationPane welObj = new LeftNavigationPane();
         System.out.println(driverToUse.findElement(welObj.loggedInUserName).getText());
         System.out.println(driverToUse.findElement(welObj.homePageLink).getSize());
         driverToUse.findElement(welObj.uploadUsers).click();
