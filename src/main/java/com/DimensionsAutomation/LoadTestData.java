@@ -1,7 +1,6 @@
 package com.DimensionsAutomation;
 
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 /**
