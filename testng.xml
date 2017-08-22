@@ -7,7 +7,8 @@
     <!--</listeners>-->
     <test name="Smoke Suite 1" >
         <classes>
-            <class name="com.DimensionsAutomation.TC1"/>
+            <class name="com.DimensionsAutomation.TC1_DimensionsLogin_Test"/>
+            <class name="com.DimensionsAutomation.TC2_LeftNavigationPaneChecks_Test"/>
         </classes>
     </test>
 </suite>
