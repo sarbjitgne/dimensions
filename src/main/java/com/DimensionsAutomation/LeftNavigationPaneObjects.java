@@ -12,5 +12,6 @@ public class LeftNavigationPaneObjects {
     By uploadUsersPage = By.xpath("//div[@id='MainChildContent']//div[@id='divUploadUsers']//h1[contains(text(),'Upload')]");
     By userManagerPage = By.xpath("//div[@id='divManageUsers']//div[@class='ChildPageHeader']//h1[contains(text(),'Users')]");
     By changePasswordPage = By.xpath("//div[@id='divChangePassword']//h1[contains(text(),'Change')]");
+    By welcomeMessage = By.xpath("//div[@class='ChildPageHeader']//h1[text()='Welcome']");
     By loginText = By.cssSelector("span.panel-title");
 }
