@@ -1,5 +1,6 @@
 package com.DimensionsAutomation;
 
+import org.apache.commons.io.filefilter.FalseFileFilter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,9 +11,6 @@ public class TestClass_BlockUser {
     private static WebDriver driverToUse;
     private static Map<String,String> inputDataValues = new HashMap<String,String>();
     private static Properties propToUse = new Properties();
-    private static List<WebElement> headerList = new ArrayList<WebElement>();
-    private static List<WebElement> elementsList = new ArrayList<WebElement>();
-    private static List<WebElement> gridTableDetails = new ArrayList<WebElement>();
 
     public TestClass_BlockUser(WebDriver driverToUse) {
         this.driverToUse = driverToUse;
@@ -35,54 +33,72 @@ public class TestClass_BlockUser {
         String loggedInUserName = inputDataValues.get("loggedInUserName");
         loginPage.loginApp(url, userName, userPassword);
         driverToUse.findElement(By.cssSelector("button.btn.btn-primary[data-bind='click: OnManageUsers']")).click();
-        List<WebElement> table = new ArrayList<WebElement>();
-        WebElement gridObject = driverToUse.findElement(By.cssSelector("div.jsgrid-grid-header.jsgrid-header-scrollbar"));
-        table = gridObject.findElements(By.cssSelector("th.jsgrid-header-cell.jsgrid-header-sortable"));
-        Iterator<WebElement> itr = table.iterator();
+//        System.out.println(provideCellValue(driverToUse,"Last Name","Mo"));
+        clickOnRequiredRow(driverToUse,"Last Name","Samar");
+        CaptureScreenShot cprSrcShots1 = new CaptureScreenShot(driverToUse);
+        cprSrcShots1.captureSrcShot("userClicked");
+        driverToUse.close();
+    }
+
+    //Method to return Name of grid headers
+    public static List<WebElement> readColumnHeaders(WebDriver driver){
+        List<WebElement> headerColumnList = new ArrayList<WebElement>();
+        List<WebElement> headerColumnName = new ArrayList<WebElement>();
+        WebElement gridHeaderObject = driver.findElement(By.cssSelector("div.jsgrid-grid-header.jsgrid-header-scrollbar"));
+        headerColumnName = gridHeaderObject.findElements(By.cssSelector("th.jsgrid-header-cell.jsgrid-header-sortable"));
+        Iterator<WebElement> itr = headerColumnName.iterator();
         while(itr.hasNext()){
             WebElement tables = itr.next();
-            headerList.add(tables);
-//            System.out.println("itr text: " + tables.getText());
+            headerColumnList.add(tables);
         }
-//        WebElement gridObject = driverToUse.findElement(By.cssSelector("th.jsgrid-header-cell.jsgrid-header-sortable"));
-//        System.out.println(headerList);
-//        System.out.println("attribute: "+gridObject.);
-//        System.out.println("Tag Name: "+gridObject.getTagName());
-//        System.out.println("Text: "+gridObject.getText());
-        Iterator<WebElement> itr2 = headerList.iterator();
-        while(itr2.hasNext()){
-            WebElement test = itr2.next();
-            System.out.println("index is: "+headerList.indexOf(test)+" list text: "+test.getText());
-//            System.out.println("list text: "+test.getText());
+        return headerColumnList;
+    }
+
+    //method to return column index
+    public static int provideColumnIndex(WebDriver driver, String columnNameToSearch){
+        int index=-1;
+        List<WebElement> columnListToUse = readColumnHeaders(driver);
+        Iterator<WebElement> itr = columnListToUse.iterator();
+        while(itr.hasNext()){
+            WebElement checkText = itr.next();
+            if(checkText.getText().equals(columnNameToSearch)){
+                index = columnListToUse.indexOf(checkText);
+            }
         }
-//        for(int i=0;i<headerList.size();i++){
-//            System.out.println("index is: "+headerList.indexOf(headerList.indexOf(headerList.get(i)))+" element text is: "+headerList.get(i).getText());
-//        }
-        //Code to read grid data:
-        WebElement gridData = driverToUse.findElement(By.cssSelector("div.jsgrid-grid-body"));
-        List<WebElement> gridTable = gridData.findElements(By.cssSelector("tr"));
-        Iterator<WebElement> gridTB = gridTable.iterator();
+        return index;
+    }
+
+    //Method to read all grid data
+    public static List<WebElement> readGridRecords(WebDriver driver){
+        List<WebElement> recordList = new ArrayList<WebElement>();
+        WebElement gridColumnData = driver.findElement(By.cssSelector("div.jsgrid-grid-body"));
+        List<WebElement> gridRecordTable = gridColumnData.findElements(By.cssSelector("tr"));
+        Iterator<WebElement> gridTB = gridRecordTable.iterator();
         while(gridTB.hasNext()){
             WebElement record = gridTB.next();
-            elementsList.add(record);
+            recordList.add(record);
         }
-        Iterator<WebElement> itr3 = elementsList.iterator();
-        while(itr3.hasNext()){
-            WebElement test1 = itr3.next();
-            System.out.println("index is: "+elementsList.indexOf(test1)+" list text: "+test1.getText());
-//            System.out.println("list text: "+test.getText());
+        return recordList;
+    }
+
+    //Method to read each all elements of a row
+    public static String readCellsOfRow(WebDriver driver, WebElement row, int index){
+        List<WebElement> cellValuesList = row.findElements(By.cssSelector("td"));
+        return cellValuesList.get(index).getText();
+    }
+    //method to click on desired row.
+    public static void clickOnRequiredRow(WebDriver driver,String columnNameToSearch, String valueToSearch){
+        List<WebElement> providedRecordList = readGridRecords(driver);
+        int index = provideColumnIndex(driver,columnNameToSearch);
+        Iterator<WebElement> clickRecord = providedRecordList.iterator();
+        while(clickRecord.hasNext()){
+            WebElement clickRow = clickRecord.next();
+            String cellValueToSearch = readCellsOfRow(driver, clickRow,index);
+            if(cellValueToSearch.equals(valueToSearch)){
+                clickRow.click();
+                break;
+            }
+
         }
-//        for(int i=0;i<elementsList.size();i++){
-//            gridTableDetails = gridTable.get(i).findElements(By.cssSelector("td.jsgrid-cell"));
-//        }
-//        for(int i=0;i<gridTableDetails.size();i++){
-//            System.out.println("index is: "+gridTableDetails.indexOf(gridTableDetails.indexOf(gridTableDetails.get(i)))+" element text is: "+gridTableDetails.get(i).getText());
-//        }
-
-
-//        List<WebElement> gridTableDetails = gridTable.get(1).findElements(By.cssSelector("td.jsgrid-cell"));
-
-
-        driverToUse.close();
     }
 }
