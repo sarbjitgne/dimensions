@@ -2,7 +2,7 @@ package com.DimensionsAutomation;
 
 import org.openqa.selenium.By;
 
-public class LoginDimObjects {
+public class ObjectsLoginDim {
     By username = By.cssSelector("input.form-control[name=LoginID]");
     By password = By.cssSelector("input.form-control[name=loginPass]");
     By loginButton = By.cssSelector("button.btn.btn-primary[type=submit]");

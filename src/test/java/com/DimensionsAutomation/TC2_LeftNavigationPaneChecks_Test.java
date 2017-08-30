@@ -1,19 +1,13 @@
 package com.DimensionsAutomation;
 
-import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Wait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import java.sql.DriverManager;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
 
 public class TC2_LeftNavigationPaneChecks_Test {
     private WebDriver baseDriver;
@@ -40,7 +34,7 @@ public class TC2_LeftNavigationPaneChecks_Test {
         String userPassword = inputDataValues.get("userPassword");
         String loggedInUserName = inputDataValues.get("loggedInUserName");
         loginPage.loginApp(url, userName, userPassword);
-        LeftNavigationChecks leftNavigation = new LeftNavigationChecks(baseDriver);
+        LeftNavigationButtonChecks leftNavigation = new LeftNavigationButtonChecks(baseDriver);
         leftNavigation.waitForPageToLoad();
         leftNavigation.verifyLoggedInUserName("Sarbjit Singh");
         leftNavigation.verifyUploadUsers();

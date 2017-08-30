@@ -4,10 +4,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-public class AddNewUser extends LeftNavigationChecks {
+public class AddNewUser extends LeftNavigationButtonChecks {
     private WebDriver driverToUse;
 
-    private AddNewUserObjects baseUser = new AddNewUserObjects();
+    private ObjectsAddNewUser baseUser = new ObjectsAddNewUser();
 
     public AddNewUser(WebDriver driverToUse) {
         super(driverToUse);

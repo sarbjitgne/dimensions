@@ -2,7 +2,7 @@ package com.DimensionsAutomation;
 
 import org.openqa.selenium.By;
 
-public class AddNewUserObjects {
+public class ObjectsAddNewUser {
     By addNewUser = By.cssSelector("btn.btn-primary[data-bind='click: OnAddNewUser']");
     By userFirstName = By.cssSelector("input[data-bind='value:FirstName']");
     By userLastName = By.cssSelector("input[data-bind='value:LastName']");

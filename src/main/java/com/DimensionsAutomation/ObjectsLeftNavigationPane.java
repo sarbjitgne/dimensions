@@ -2,7 +2,7 @@ package com.DimensionsAutomation;
 
 import org.openqa.selenium.By;
 
-public class LeftNavigationPaneObjects {
+public class ObjectsLeftNavigationPane {
     By loggedInUserName = By.xpath("//h3[@class='profile-title' and text()='Sarbjit Singh']");
     By homePageLink = By.cssSelector("div.main-navigation i.fa-home");
     By logoutLink =By.cssSelector("div.main-navigation i.fa-sign-out");
@@ -14,4 +14,5 @@ public class LeftNavigationPaneObjects {
     By changePasswordPage = By.xpath("//div[@id='divChangePassword']//h1[contains(text(),'Change')]");
     By welcomeMessage = By.xpath("//div[@class='ChildPageHeader']//h1[text()='Welcome']");
     By loginText = By.cssSelector("span.panel-title");
+    By processingWindow = By.cssSelector("div.ui-dialog.ui-corner-all.ui-widget.ui-widget-content.ui-front.no-close");
 }

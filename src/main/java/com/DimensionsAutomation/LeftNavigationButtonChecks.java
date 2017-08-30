@@ -8,12 +8,12 @@ import org.openqa.selenium.support.ui.Wait;
 
 import java.util.concurrent.TimeUnit;
 
-public class LeftNavigationChecks {
+public class LeftNavigationButtonChecks {
     private WebDriver driverToUse;
-    private LeftNavigationPaneObjects basePage = new LeftNavigationPaneObjects();
+    private ObjectsLeftNavigationPane basePage = new ObjectsLeftNavigationPane();
     private Wait wait;
 
-    public LeftNavigationChecks(WebDriver driverToUse) {
+    public LeftNavigationButtonChecks(WebDriver driverToUse) {
         this.driverToUse = driverToUse;
     }
 

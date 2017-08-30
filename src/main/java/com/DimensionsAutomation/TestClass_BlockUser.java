@@ -41,15 +41,15 @@ public class TestClass_BlockUser {
     }
 
     //Method to return Name of grid headers
-    public static List<WebElement> readColumnHeaders(WebDriver driver){
-        List<WebElement> headerColumnList = new ArrayList<WebElement>();
+    public static List<String> readColumnHeaders(WebDriver driver){
+        List<String> headerColumnList = new ArrayList<String>();
         List<WebElement> headerColumnName = new ArrayList<WebElement>();
         WebElement gridHeaderObject = driver.findElement(By.cssSelector("div.jsgrid-grid-header.jsgrid-header-scrollbar"));
         headerColumnName = gridHeaderObject.findElements(By.cssSelector("th.jsgrid-header-cell.jsgrid-header-sortable"));
         Iterator<WebElement> itr = headerColumnName.iterator();
         while(itr.hasNext()){
             WebElement tables = itr.next();
-            headerColumnList.add(tables);
+            headerColumnList.add(tables.getText());
         }
         return headerColumnList;
     }
@@ -57,11 +57,11 @@ public class TestClass_BlockUser {
     //method to return column index
     public static int provideColumnIndex(WebDriver driver, String columnNameToSearch){
         int index=-1;
-        List<WebElement> columnListToUse = readColumnHeaders(driver);
-        Iterator<WebElement> itr = columnListToUse.iterator();
+        List<String> columnListToUse = readColumnHeaders(driver);
+        Iterator<String> itr = columnListToUse.iterator();
         while(itr.hasNext()){
-            WebElement checkText = itr.next();
-            if(checkText.getText().equals(columnNameToSearch)){
+            String checkText = itr.next();
+            if(checkText.equals(columnNameToSearch)){
                 index = columnListToUse.indexOf(checkText);
             }
         }
@@ -91,6 +91,12 @@ public class TestClass_BlockUser {
         List<WebElement> providedRecordList = readGridRecords(driver);
         int index = provideColumnIndex(driver,columnNameToSearch);
         Iterator<WebElement> clickRecord = providedRecordList.iterator();
+//        for(int i=0;i<providedRecordList.size();i++){
+//            WebElement clickRow = providedRecordList.get(i);
+//        }
+//        for(WebElement clickRow:providedRecordList){
+//            String cellValueToSearch = readCellsOfRow(driver, clickRow,index);
+//        }
         while(clickRecord.hasNext()){
             WebElement clickRow = clickRecord.next();
             String cellValueToSearch = readCellsOfRow(driver, clickRow,index);
