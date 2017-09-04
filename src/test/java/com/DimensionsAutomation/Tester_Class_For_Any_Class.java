@@ -42,8 +42,8 @@ public class Tester_Class_For_Any_Class {
 //        SelectUserForOperation selectUser = new SelectUserForOperation(baseDriver);
 //        selectUser.selectRequiredRow("Roll Number","8005");
         ChangeUserAccountStatus userAction = new ChangeUserAccountStatus(baseDriver);
-        String test = userAction.activateUser("Roll Number","8005");
-        Assert.assertEquals("Active2", test);
+        String test = userAction.activateUser("Roll Number","8005","active");
+        Assert.assertEquals("active", test);
     }
     @AfterClass
     public void stopWebDriver(){

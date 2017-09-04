@@ -21,9 +21,14 @@ public class ChangeUserAccountStatus extends BasePageNavigation{
         this.driverForUse = driverForUse;
         selectRow = new SelectUserForOperation(driverForUse);
     }
-    public String activateUser(String columnName, String rollNumber){
+    public String activateUser(String columnName, String rollNumber, String actionRequired){
         selectRow.selectRequiredRow(columnName, rollNumber);
-        driverForUse.findElement(userManagerButtons.activateUser).click();
+        if(actionRequired.equalsIgnoreCase("active")){
+            driverForUse.findElement(userManagerButtons.activateUser).click();
+        }
+        if(actionRequired.equalsIgnoreCase("blocked")){
+            driverForUse.findElement(userManagerButtons.blockUser).click();
+        }
         alertHandle();
         wait.until(ExpectedConditions.invisibilityOfElementLocated(basePage.processingWindow));
         clickHomeButton();
