@@ -31,10 +31,12 @@ public class BasePageNavigation {
     }
 
     public void clickUploadUsers() {
+        wait.until(ExpectedConditions.elementToBeClickable(basePage.uploadUsers));
         driverToUse.findElement(basePage.uploadUsers).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(basePage.uploadUsers));
     }
     public void clickManageUsers() {
+        wait.until(ExpectedConditions.elementToBeClickable(basePage.manageUsers));
         driverToUse.findElement(basePage.manageUsers).click();
         wait.until(ExpectedConditions.invisibilityOfElementLocated(basePage.processingWindow));
     }

@@ -1,7 +1,6 @@
 package com.DimensionsAutomation;
 
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -42,7 +41,7 @@ public class Tester_Class_For_Any_Class {
 //        SelectUserForOperation selectUser = new SelectUserForOperation(baseDriver);
 //        selectUser.selectRequiredRow("Roll Number","8005");
         ChangeUserAccountStatus userAction = new ChangeUserAccountStatus(baseDriver);
-        String test = userAction.activateUser("Roll Number","8005","active");
+        String test = userAction.changeUserStatus("Roll Number", "8005", "active");
         Assert.assertEquals("active", test);
     }
     @AfterClass

@@ -11,50 +11,47 @@ import java.util.concurrent.TimeUnit;
 public class LeftNavigationButtonChecks {
     private WebDriver driverToUse;
     private ObjectsLeftNavigationPane basePage = new ObjectsLeftNavigationPane();
-    private Wait wait;
+    public Wait wait;
 
     public LeftNavigationButtonChecks(WebDriver driverToUse) {
         this.driverToUse = driverToUse;
-    }
-
-    public void waitForPageToLoad(){
         wait = new FluentWait(driverToUse)
                 .withTimeout(60, TimeUnit.SECONDS)
                 .pollingEvery(500,TimeUnit.MILLISECONDS);
+    }
+
+    public void waitForPageToLoad(){
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(basePage.processingWindow));
         wait.until(ExpectedConditions.visibilityOfElementLocated(basePage.uploadUsers));
     }
 
    public void verifyLoggedInUserName(String UserName) {
-       wait = new FluentWait(driverToUse)
-               .withTimeout(60, TimeUnit.SECONDS)
-               .pollingEvery(500,TimeUnit.MILLISECONDS);
        wait.until(ExpectedConditions.visibilityOfElementLocated(basePage.loggedInUserName));
         Assert.assertEquals(UserName, driverToUse.findElement(basePage.loggedInUserName).getText());
     }
     public void verifyUploadUsers() {
+        driverToUse.findElement(basePage.homePageLink).click();
         driverToUse.findElement(basePage.uploadUsers).click();
-        wait = new FluentWait(driverToUse)
-                .withTimeout(60, TimeUnit.SECONDS)
-                .pollingEvery(500,TimeUnit.MILLISECONDS);
         wait.until(ExpectedConditions.visibilityOfElementLocated(basePage.uploadUsersPage));
         Assert.assertEquals("Upload Users:",driverToUse.findElement(basePage.uploadUsersPage).getText());
     }
     public void verifyManageUsers() {
         driverToUse.findElement(basePage.homePageLink).click();
-        wait = new FluentWait(driverToUse)
-                .withTimeout(60, TimeUnit.SECONDS)
-                .pollingEvery(500,TimeUnit.MILLISECONDS);
         wait.until(ExpectedConditions.visibilityOfElementLocated(basePage.manageUsers));
         driverToUse.findElement(basePage.manageUsers).click();
         Assert.assertEquals("Users Manager",driverToUse.findElement(basePage.userManagerPage).getText());
     }
     public void verifyChangePassword() {
+        wait.until(ExpectedConditions.elementToBeClickable(basePage.homePageLink));
         driverToUse.findElement(basePage.homePageLink).click();
+        wait.until(ExpectedConditions.elementToBeClickable(basePage.changePasswordLink));
         driverToUse.findElement(basePage.changePasswordLink).click();
         Assert.assertEquals("Change Password",driverToUse.findElement(basePage.changePasswordPage).getText());
     }
     public void verifyLogout() {
+        wait.until(ExpectedConditions.elementToBeClickable(basePage.homePageLink));
         driverToUse.findElement(basePage.homePageLink).click();
+        wait.until(ExpectedConditions.elementToBeClickable(basePage.logoutLink));
         driverToUse.findElement(basePage.logoutLink).click();
         Assert.assertEquals("Please Login Here",driverToUse.findElement(basePage.loginText).getText());
     }

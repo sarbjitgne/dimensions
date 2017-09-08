@@ -36,38 +36,13 @@ public class TC2_LeftNavigationPaneChecks_Test {
         loginPage.loginApp(url, userName, userPassword);
         LeftNavigationButtonChecks leftNavigation = new LeftNavigationButtonChecks(baseDriver);
         leftNavigation.waitForPageToLoad();
-        leftNavigation.verifyLoggedInUserName("Sarbjit Singh");
+        leftNavigation.verifyLoggedInUserName(loggedInUserName);
         leftNavigation.verifyUploadUsers();
         leftNavigation.verifyManageUsers();
         leftNavigation.verifyChangePassword();
         leftNavigation.verifyLogout();
 
- //        Wait wait = new FluentWait(baseDriver)
-//                .withTimeout(120, TimeUnit.SECONDS)
-//                .pollingEvery(1,TimeUnit.SECONDS);
-//        LeftNavigationPaneObjects welObj = new LeftNavigationPaneObjects();
-//        //Check logged in username, will read logged in user name from input file.
-//        Assert.assertEquals(loggedInUserName, baseDriver.findElement(welObj.loggedInUserName).getText());
-//        //Check Upload users button work
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(welObj.uploadUsers));
-//        baseDriver.findElement(welObj.uploadUsers).click();
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(welObj.uploadUsersPage));
-//        Assert.assertEquals("Upload Users:",baseDriver.findElement(welObj.uploadUsersPage).getText());
-//        //Check manage Users button works
-//        baseDriver.findElement(welObj.homePageLink).click();
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(welObj.manageUsers));
-//        baseDriver.findElement(welObj.manageUsers).click();
-//        Assert.assertEquals("Users Manager",baseDriver.findElement(welObj.userManagerPage).getText());
-//        //Check Change Password button
-//        baseDriver.findElement(welObj.homePageLink).click();
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(welObj.changePasswordLink));
-//        baseDriver.findElement(welObj.changePasswordLink).click();
-//        Assert.assertEquals("Change Password",baseDriver.findElement(welObj.changePasswordPage).getText());
-//        //Check Logout button
-//        baseDriver.findElement(welObj.homePageLink).click();
-//        baseDriver.findElement(welObj.logoutLink).click();
-//        Assert.assertEquals("Please Login Here",baseDriver.findElement(welObj.loginText).getText());
-    }
+ }
     @AfterClass
     public void stopWebDriver(){
         System.out.println("stopping and quitting web driver");

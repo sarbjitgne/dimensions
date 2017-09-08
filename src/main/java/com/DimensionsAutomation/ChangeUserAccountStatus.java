@@ -21,7 +21,7 @@ public class ChangeUserAccountStatus extends BasePageNavigation{
         this.driverForUse = driverForUse;
         selectRow = new SelectUserForOperation(driverForUse);
     }
-    public String activateUser(String columnName, String rollNumber, String actionRequired){
+    public String changeUserStatus(String columnName, String rollNumber, String actionRequired){
         selectRow.selectRequiredRow(columnName, rollNumber);
         if(actionRequired.equalsIgnoreCase("active")){
             driverForUse.findElement(userManagerButtons.activateUser).click();

@@ -9,6 +9,7 @@
         <classes>
             <class name="com.DimensionsAutomation.TC1_DimensionsLogin_Test"/>
             <class name="com.DimensionsAutomation.TC2_LeftNavigationPaneChecks_Test"/>
+            <class name="com.DimensionsAutomation.TC3_ChangeUserAccountStatus_Test"/>
         </classes>
     </test>
 </suite>
