@@ -30,7 +30,8 @@ public class LoginDimensions extends BasePageNavigation {
         driverForUse.findElement(loginObj.username).sendKeys(uName);
         driverForUse.findElement(loginObj.password).sendKeys(uPassword);
         driverForUse.findElement(loginObj.loginButton).click();
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(basePage.processingWindow));
+        waitToPageToLoad();
+//        wait(60,500).until(ExpectedConditions.invisibilityOfElementLocated(basePage.processingWindow));
         windowTitle = driverForUse.getTitle();
         waitToPageToLoad();
     }

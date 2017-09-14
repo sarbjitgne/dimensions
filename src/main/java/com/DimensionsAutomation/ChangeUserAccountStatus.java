@@ -30,7 +30,7 @@ public class ChangeUserAccountStatus extends BasePageNavigation{
             driverForUse.findElement(userManagerButtons.blockUser).click();
         }
         alertHandle();
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(basePage.processingWindow));
+        wait(60,500).until(ExpectedConditions.invisibilityOfElementLocated(basePage.processingWindow));
         clickHomeButton();
         clickManageUsers();
         return selectRow.verifyRequiredStatus(columnName, rollNumber);

@@ -66,11 +66,16 @@ public class TestClass_BlockUser extends BasePageNavigation {
         ((HasInputDevices) driverToUse).getKeyboard().sendKeys(Keys.CONTROL + "v");
         cprSrcShots.captureSrcShot("DataEntered");
         driverToUse.findElement(By.cssSelector("button.btn.btn-primary")).click();
+        try {
+            Thread.sleep(20000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         loginPage.clickHomeButton();
         loginPage.clickManageUsers();
         SelectUserForOperation checkUploadedUsers = new SelectUserForOperation(driverToUse);
-        String isUserExist = checkUploadedUsers.verifyRequiredStatus("Roll Number","8021");
-        if(isUserExist.equals("Active")){
+        String isUserExist = checkUploadedUsers.verifyRequiredStatus("Roll Number","8023");
+        if(isUserExist == null || !isUserExist.isEmpty()){
             System.out.println("User added successfully");
         }else{
             System.out.println("There is some issue with user uploading");

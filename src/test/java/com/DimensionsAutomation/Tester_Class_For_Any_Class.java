@@ -6,9 +6,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 
 public class Tester_Class_For_Any_Class {
     private WebDriver baseDriver;
@@ -36,14 +34,29 @@ public class Tester_Class_For_Any_Class {
         loginPage.loginApp(url, userName, userPassword);
         Assert.assertEquals("Dimension", loginPage.getWindowTitle());
         cprSrcShots.captureSrcShot("Home_Page");
-        loginPage.clickManageUsers();
+//        loginPage.clickUploadUsers();
 //        baseDriver.findElement(By.xpath("button.btn.btn-primary[data-bind='click: OnManageUsers']")).click();
 //        SelectUserForOperation selectUser = new SelectUserForOperation(baseDriver);
 //        selectUser.selectRequiredRow("Roll Number","8005");
-        ChangeUserAccountStatus userAction = new ChangeUserAccountStatus(baseDriver);
-        String test = userAction.changeUserStatus("Roll Number", "8005", "active");
-        Assert.assertEquals("active", test);
-    }
+//        ChangeUserAccountStatus userAction = new ChangeUserAccountStatus(baseDriver);
+//        String test = userAction.changeUserStatus("Roll Number", "8005", "active");
+//        Assert.assertEquals("active", test);
+        UploadUsers uploadNewUserList = new UploadUsers(baseDriver,"UploadUsers.txt");
+        String areUsersAddedSuccessfully = uploadNewUserList.uploadUsers();
+//        Assert.assertEquals("Users saved.",areUsersAddedSuccessfully);
+        Map<String,Boolean> usersUploaded = new HashMap<String,Boolean>();
+        usersUploaded = uploadNewUserList.verifyUploadedUsers();
+        for(Map.Entry<String, Boolean> entry:usersUploaded.entrySet()){
+            boolean test = entry.getValue();
+            if(test==true){
+                System.out.println(entry.getKey()+" - User addition successful");
+
+            }else{
+                System.out.println(entry.getKey()+" - User addition failed");
+            }
+        }
+
+     }
     @AfterClass
     public void stopWebDriver(){
         System.out.println("stopping and quitting web driver");

@@ -13,41 +13,47 @@ import java.util.concurrent.TimeUnit;
 public class BasePageNavigation {
     private WebDriver driverToUse;
     public ObjectsLeftNavigationPane basePage = new ObjectsLeftNavigationPane();
-    public Wait wait;
+//    public Wait wait;
 
     public BasePageNavigation(WebDriver driverToUse) {
         this.driverToUse = driverToUse;
-        wait = new FluentWait(driverToUse)
-                .withTimeout(60, TimeUnit.SECONDS)
-                .pollingEvery(500,TimeUnit.MILLISECONDS);
+//        wait = new FluentWait(driverToUse)
+//                .withTimeout(60, TimeUnit.SECONDS)
+//                .pollingEvery(500,TimeUnit.MILLISECONDS);
+    }
+    public Wait wait(int secondsToWait, int secondsToPoll){
+       return new FluentWait(driverToUse)
+                .withTimeout(secondsToWait, TimeUnit.SECONDS)
+                .pollingEvery(secondsToPoll,TimeUnit.MILLISECONDS);
     }
 
     public void waitToPageToLoad(){
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(basePage.processingWindow));
+        wait(20,500).until(ExpectedConditions.invisibilityOfElementLocated(basePage.processingWindow));
     }
     public void clickHomeButton() {
         driverToUse.findElement(basePage.homePageLink).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(basePage.welcomeMessage));
+        wait(20,500).until(ExpectedConditions.visibilityOfElementLocated(basePage.welcomeMessage));
     }
 
     public void clickUploadUsers() {
-        wait.until(ExpectedConditions.elementToBeClickable(basePage.uploadUsers));
+        clickHomeButton();
+        wait(20,500).until(ExpectedConditions.elementToBeClickable(basePage.uploadUsers));
         driverToUse.findElement(basePage.uploadUsers).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(basePage.uploadUsers));
+        wait(20,500).until(ExpectedConditions.visibilityOfElementLocated(basePage.uploadUsersPage));
     }
     public void clickManageUsers() {
-        wait.until(ExpectedConditions.elementToBeClickable(basePage.manageUsers));
+        clickHomeButton();
+        wait(20,500).until(ExpectedConditions.elementToBeClickable(basePage.manageUsers));
         driverToUse.findElement(basePage.manageUsers).click();
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(basePage.processingWindow));
+        wait(60,500).until(ExpectedConditions.invisibilityOfElementLocated(basePage.processingWindow));
     }
     public void clickChangePassword() {
         driverToUse.findElement(basePage.changePasswordLink).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(basePage.changePasswordPage));
+        wait(20,500).until(ExpectedConditions.visibilityOfElementLocated(basePage.changePasswordPage));
     }
     public void clickLogout() {
         driverToUse.findElement(basePage.logoutLink).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(basePage.changePasswordPage));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(basePage.loginText));
+        wait(20,500).until(ExpectedConditions.visibilityOfElementLocated(basePage.loginText));
     }
     public void alertHandle(){
         try{
