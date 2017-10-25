@@ -12,17 +12,17 @@ public class AddNewUser extends LeftNavigationButtonChecks {
     public AddNewUser(WebDriver driverToUse) {
         super(driverToUse);
     }
-    public void addUser(){
+    public void addUser(String firstName, String lastName, String loginID, String userType, String password){
         waitForPageToLoad();
         verifyManageUsers();
         driverToUse.findElement(baseUser.addNewUser).click();
-        driverToUse.findElement(baseUser.userFirstName).sendKeys("Aman");
-        driverToUse.findElement(baseUser.userLastName).sendKeys("Jain2");
-        driverToUse.findElement(baseUser.userLoginId).sendKeys("aman_jain2");
-        WebElement userType = driverToUse.findElement(baseUser.userType);
-        Select uType = new Select(userType);
-        uType.selectByValue("Student");
-        driverToUse.findElement(baseUser.userPassword).sendKeys("Amanjain123");
+        driverToUse.findElement(baseUser.userFirstName).sendKeys(firstName);
+        driverToUse.findElement(baseUser.userLastName).sendKeys(lastName);
+        driverToUse.findElement(baseUser.userLoginId).sendKeys(loginID);
+        WebElement userTypeDD = driverToUse.findElement(baseUser.userType);
+        Select uType = new Select(userTypeDD);
+        uType.selectByValue(userType);
+        driverToUse.findElement(baseUser.userPassword).sendKeys(password);
         driverToUse.findElement(baseUser.userSave).click();
     }
 }

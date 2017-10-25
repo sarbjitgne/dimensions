@@ -25,7 +25,7 @@ public class LoginDimensions extends BasePageNavigation {
     public void loginApp(String URL, String uName, String uPassword){
         driverForUse.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         driverForUse.get(URL);
-        driverForUse.manage().window().maximize();
+//        driverForUse.manage().window().maximize();
         ObjectsLoginDim loginObj = new ObjectsLoginDim();
         driverForUse.findElement(loginObj.username).sendKeys(uName);
         driverForUse.findElement(loginObj.password).sendKeys(uPassword);

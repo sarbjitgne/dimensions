@@ -1,2 +1,2 @@
-userName,userPassword,loggedInUserName
-admin,password,Sarbjit Singh
+userName,userPassword,loggedInUserName,firstName,lastName,loginID,userType,password
+admin,password,Sarbjit Singh,Pritpal,Singh,8099,Student,password

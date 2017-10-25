@@ -26,20 +26,27 @@ public class StartDriverServer {
         }
         if(browserName.equals("Chrome")){
             System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"\\src\\main\\resources\\chromedriver.exe");
-//            return startDriverServer = new ChromeDriver();
             ChromeOptions options = new ChromeOptions();
-            options.addArguments("test-type");
+            options.setExperimentalOption("useAutomationExtension", false);
+//            options.addArguments("test-type");
             options.addArguments(Arrays.asList("--start-maximized"));
-            options.addArguments(Arrays.asList("--ssl-protocol=any"));
-            options.addArguments(Arrays.asList("--ignore-ssl-errors=true"));
-            options.addArguments(Arrays.asList("--disable-extensions"));
-            options.addArguments(Arrays.asList("--ignore-certificate-errors"));
-            DesiredCapabilities crcapabilities = DesiredCapabilities.chrome();
-//            crcapabilities.setCapability("chrome.binary","C:/Sarbjit/MVNLearn/src/main/resources/chromedriver.exe");
-//            crcapabilities.setCapability("Project","MVNLearn");
-            crcapabilities.setCapability(ChromeOptions.CAPABILITY, options);
-            crcapabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
-            return startDriverServer = new ChromeDriver(crcapabilities);
+//            options.addArguments(Arrays.asList("--ssl-protocol=any"));
+//            options.addArguments(Arrays.asList("--js-flags=--expose-gc")); //newly added
+//            options.addArguments(Arrays.asList("--enable-precise-memory-info")); //newly added
+//            options.addArguments(Arrays.asList("--disable-popup-blocking")); //newly added
+//            options.addArguments(Arrays.asList("--disable-default-apps")); //newly added
+//            options.addArguments(Arrays.asList("test-type=browser")); //newly added
+//            options.addArguments(Arrays.asList("disable-infobars")); //newly added
+//            options.addArguments(Arrays.asList("--ignore-ssl-errors=true"));
+//            options.addArguments(Arrays.asList("--disable-extensions"));
+//            options.addArguments(Arrays.asList("--ignore-certificate-errors"));
+            DesiredCapabilities crCapabilities = DesiredCapabilities.chrome();
+//            crCapabilities.setCapability("chrome.binary",System.getProperty("user.dir")+"\\src\\main\\resources\\chromedriver.exe");
+            crCapabilities.setCapability("Project","dimensions");
+            crCapabilities.setCapability(ChromeOptions.CAPABILITY, options);
+            crCapabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+            return startDriverServer = new ChromeDriver(options);
+
 
         }
         if(browserName.equals("Mozilla")){
